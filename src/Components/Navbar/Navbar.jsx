@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { getData, getUser, removeUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 
-import logoImg from '../../../public/logo/logo.png'
+// import logoImg from '../../../public/logo/logo.png'
 
 
 const Navbar = () => {
@@ -59,7 +59,7 @@ const Navbar = () => {
             {/* left side start */}
             <div>
               <img
-                src={logoImg}
+                src={""}
                 className="md:w-20 md:h-10 lg:w-24 lg:h-11 xl:w-28 xl:h-11 2xl:w-32 2xl:h-12"
               ></img>
 
@@ -161,7 +161,7 @@ const Navbar = () => {
           <div className={`${active ? 'fixed top-0 right-0 left-0 z-50 bg-white shadow-md shadow-slate-200': 'sticky bg-white'} flex justify-between items-center px-6 h-20 sm:h-24 `}>
             <div>
               <img
-                src={logoImg}
+                src={""}
                 className="w-20 h-8 sm:w-24 sm:h-10"
               ></img>
             </div>

@@ -1,4 +1,4 @@
-* ### This project is basically a single page retail POS system.
+* ### This project is basically a single page office-management retail POS system.
 
 * ### live link: ()
 * ### code link: ()
