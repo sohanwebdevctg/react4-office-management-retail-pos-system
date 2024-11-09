@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 import Title from "../../Components/Title/Title";
@@ -16,7 +16,11 @@ const Login = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const user = true;
+    let user = false;
+
+    if(email === "admin@gmail.com" || email === "manager@gmail.com"){
+      user = true;
+    }
 
     if (name === null && email === null && password === null) {
       Swal.fire({
@@ -25,7 +29,7 @@ const Login = () => {
         text: "Something went wrong!",
       });
     } else {
-      const userValue = {name: name, email: email, password: password, user: user };
+      const userValue = {name: name, email: email, user: user };
       Swal.fire({
         position: "middle",
         icon: "success",
