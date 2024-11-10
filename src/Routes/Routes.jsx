@@ -6,6 +6,7 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import UserTable from "../Pages/UserTable/UserTable";
 import UserOrderTable from "../Pages/UserOrderTable/UserOrderTable";
+import CreateProduct from "../Pages/CreateProduct/CreateProduct";
 
 
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/user-order-table',
         element: <UserOrderTable></UserOrderTable>
+      },
+      {
+        path: '/create-product',
+        element: <CreateProduct></CreateProduct>
       },
     ]
   },
