@@ -22,7 +22,7 @@ const MainLayout = () => {
       </div>
       {/* navbar section end */}
       {/* content section start */}
-      <div className={`${active ? 'md:w-[98%]' : 'md:w-[90%]' } h-screen bg-blue-400 duration-500 w-full`}>
+      <div className={`${active ? 'md:w-[98%]' : 'md:w-[90%]' } h-screen bg-white duration-500 w-full`}>
         <Outlet></Outlet>
       </div>
       {/* content section end */}
