@@ -16,10 +16,10 @@ const Login = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    let user = false;
+    let user = "user";
 
     if(email === "admin@gmail.com" || email === "manager@gmail.com"){
-      user = true;
+      user = "admin";
     }
 
     if (name === null && email === null && password === null) {
