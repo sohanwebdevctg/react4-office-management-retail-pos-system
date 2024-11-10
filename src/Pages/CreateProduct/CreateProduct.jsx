@@ -16,9 +16,7 @@ const CreateProduct = () => {
       showConfirmButton: false,
       timer: 1000
     });
-
   }
-
 
   return (
     <>

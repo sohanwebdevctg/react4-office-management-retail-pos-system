@@ -1,7 +1,7 @@
 import Title from "../../Components/Title/Title";
 
 
-const UserOrderTable = () => {
+const OrderTable = () => {
 
   const data = true;
 
@@ -9,15 +9,15 @@ const UserOrderTable = () => {
   return (
     <>
       {/* title start */}
-      <Title name={'User-Order-Table'}></Title>
+      <Title name={'Order-Table'}></Title>
       {/* title end */}
-                  {/* content start */}
-                  <div className="my-8 xl:my-10 ">
+            {/* content start */}
+            <div className="my-8 xl:my-10 ">
         {/* content section start */}
         <div className="container mx-auto px-5 lg:px-8 xl:px-10 ">
           {/* table title start */}
-          <div className="w-[66%] sm:w-[38%] md:w-[29%] lg:w-[26%] xl:w-[25%] 2xl:w-[26%] mx-auto">
-            <h3 className="font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-center border-b-2 border-b-red-500 text-red-500">User-Order-Table</h3>
+          <div className="w-[58%] sm:w-[38%] md:w-[29%] lg:w-[24%] xl:w-[23%] 2xl:w-[24%] mx-auto">
+            <h3 className="font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-center border-b-2 border-b-red-500 text-red-500">Order-Table</h3>
           </div>
           {/* table title end */}
           {/* table start */}
@@ -58,4 +58,4 @@ const UserOrderTable = () => {
   );
 };
 
-export default UserOrderTable;
+export default OrderTable;
