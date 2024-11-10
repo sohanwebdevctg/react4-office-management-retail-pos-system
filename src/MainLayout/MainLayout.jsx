@@ -17,12 +17,12 @@ const MainLayout = () => {
     <>
       <div className="flex justify-between items-center h-full">
       {/* navbar section start */}
-      <div className={`${active ? 'w-[5%]' : 'w-[8%]' } h-screen duration-500`}>
+      <div className={`${active ? 'md:w-[8%]' : 'md:w-[10%]' } hidden md:block h-screen duration-500`}>
         <Navbar active={active} toggleSideBar={toggleSideBar}></Navbar>
       </div>
       {/* navbar section end */}
       {/* content section start */}
-      <div className={`${active ? 'w-[95%]' : 'w-[98%]' } h-screen bg-blue-400 duration-500`}>
+      <div className={`${active ? 'md:w-[98%]' : 'md:w-[90%]' } h-screen bg-blue-400 duration-500 w-full`}>
         <Outlet></Outlet>
       </div>
       {/* content section end */}
