@@ -1,20 +1,19 @@
 import { useState } from "react";
 import Title from "../../Components/Title/Title";
-import { getUser, setUser } from "../../utilities/localstorage";
+import { getUser, removeUser, setUser } from "../../utilities/localstorage";
 
 
 const AllUsers = () => {
 
   // user data
   const [users, setUsers] = useState(() => getUser());
+
+  console.log(users)
   
 
   const deleteUser = (item) => {
-
-    let validUser = users.filter((data) => data.email !== item.email && data.userType !== item.userType);
-    localStorage.setItem('userInfo', JSON.stringify(validUser));
-    setUser(validUser);
-    location.reload();
+    // const valid = users.filter((data) => data.email != item.email && data.userType != item.userType);
+    console.log(item);
   }
 
   return (
