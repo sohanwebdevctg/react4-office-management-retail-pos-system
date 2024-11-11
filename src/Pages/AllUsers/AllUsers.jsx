@@ -1,9 +1,21 @@
+import { useState } from "react";
 import Title from "../../Components/Title/Title";
+import { getUser, setUser } from "../../utilities/localstorage";
 
 
 const AllUsers = () => {
 
-  const data = true;
+  // user data
+  const [users, setUsers] = useState(() => getUser());
+  
+
+  const deleteUser = (item) => {
+
+    let validUser = users.filter((data) => data.email !== item.email && data.userType !== item.userType);
+    localStorage.setItem('userInfo', JSON.stringify(validUser));
+    setUser(validUser);
+    location.reload();
+  }
 
   return (
     <>
@@ -33,14 +45,14 @@ const AllUsers = () => {
                 </tr>
               </thead>
               {
-                data?.length > 0 ? (<tbody>
+                users?.length > 0 ? (<tbody>
                   {
-                    data.map((item, index) => <tr key={index} className="hover:bg-slate-100">
+                    users.map((item, index) => <tr key={index} className="hover:bg-slate-100">
                     <td>{++index}</td>
                     <td><p>{item?.name}</p></td>
                     <td>{item?.email}</td>
-                    <td>{item?.user}</td>
-                    <td><button className="btn btn-red-400 text-white">Delete</button></td>
+                    <td>{item?.userType}</td>
+                    <td><button onClick={() => deleteUser(item)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
                   </tr>)
                   }
                 </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)

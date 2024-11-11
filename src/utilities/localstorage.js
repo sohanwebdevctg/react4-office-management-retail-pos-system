@@ -11,7 +11,6 @@ const setUser = (data) => {
 
   let previousUser = getUser();
 
-
   previousUser.push(data);
   localStorage.setItem('userInfo', JSON.stringify(previousUser));
   
