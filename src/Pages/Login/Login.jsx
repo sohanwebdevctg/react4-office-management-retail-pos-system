@@ -16,10 +16,11 @@ const Login = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    let user = "user";
+    let user = true;
+    let userType = "user";
 
-    if(email === "admin@gmail.com" || email === "manager@gmail.com"){
-      user = "admin";
+    if(name === "admin" && email === "admin@gmail.com"){
+      userType = "admin";
     }
 
     if (name === null && email === null && password === null) {
@@ -29,7 +30,7 @@ const Login = () => {
         text: "Something went wrong!",
       });
     } else {
-      const userValue = {name: name, email: email, user: user };
+      const userValue = {name: name, email: email, user: user, userType: userType };
       Swal.fire({
         position: "middle",
         icon: "success",

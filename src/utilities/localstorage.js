@@ -2,24 +2,27 @@
 
 const getUser = () => {
 
-  const userInfo = localStorage.getItem('userInfo');
-
-  if(!userInfo){
-    return [];
-  }else{
-    return JSON.parse(userInfo)
-  }
+  const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+  return userInfo;
 
 }
 
 const setUser = (data) => {
-  return localStorage.setItem('userInfo', JSON.stringify(data));
+
+  let previousUser = getUser();
+
+
+  previousUser.push(data);
+  localStorage.setItem('userInfo', JSON.stringify(previousUser));
+  
 }
 
 const removeUser = () => {
   return localStorage.removeItem('userInfo');
 }
 /* user data end */
+
+
 
 /* data add in cart start */
 const getData = () => {

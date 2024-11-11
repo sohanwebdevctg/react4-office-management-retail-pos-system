@@ -8,7 +8,9 @@ const PrivateRoute = ({children}) => {
   // user data
   const [user, setUser] = useState(() => getUser());
 
-  if(user.email && user.user){
+  let validUser = user.find((item) => item.email && item.user === true)
+
+  if(validUser){
     return children;
   }else{
     return <Navigate to="/login"></Navigate>
