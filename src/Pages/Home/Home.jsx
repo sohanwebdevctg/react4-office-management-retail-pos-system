@@ -1,15 +1,37 @@
+import { useEffect, useState } from "react";
 import Title from "../../Components/Title/Title";
+import Cart from "./Cart";
 
 
 const Home = () => {
+
+  // loading data
+  const [datas, setDatas] = useState([])
+
+  useEffect(() => {
+    fetch('products.json')
+    .then((res) => res.json())
+    .then((data) => setDatas(data))
+  },[])
 
   return (
     <div>
       {/* title start */}
       <Title name={'home'}></Title>
       {/* title end */}
-      <div>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis et fugiat dolore amet asperiores a quidem, excepturi commodi quibusdam fuga sed molestias delectus laborum? Cum maxime cupiditate corporis aliquid quisquam dolor dolorum totam culpa repellendus fugiat deserunt necessitatibus temporibus facere ab quibusdam eum, ex numquam? Iusto quos consectetur voluptas enim soluta ipsum alias asperiores repudiandae, ad dolorum doloribus, praesentium, delectus esse exercitationem adipisci architecto cum? Architecto, laudantium illo! Architecto consectetur ullam quos illum facilis provident, doloribus, sit laudantium vitae veniam expedita. Magnam suscipit minus soluta molestias fugiat impedit ut facilis repellendus ducimus aliquid, harum repudiandae cupiditate officia nostrum assumenda laborum?</p>
+      <div className="flex justify-between h-screen sm:gap-2 md:gap-1 xl:gap-3">
+        {/* cart-item start */}
+        <div className="w-full sm:w-[70%] grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4 gap-2 sm:gap-2 md:gap-2 xl:gap-4 px-2">
+          {
+            datas.map((item, index) => <Cart key={index} item={item}></Cart>)
+          }
+        </div>
+        {/* cart-item end */}
+        {/* quantity start */}
+        <div className="sm:w-[30%] bg-blue-300 hidden sm:block">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, ex?</p>
+        </div>
+        {/* quantity end */}
       </div>
     </div>
   );

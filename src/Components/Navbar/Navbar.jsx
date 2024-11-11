@@ -28,34 +28,34 @@ const Navbar = ({active,toggleSideBar}) => {
         <ul className="flex flex-col gap-3">
           <li>
             {
-              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg text-white"} to="/">Home</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/"><MdDashboard className="text-xl xl:text-3xl mx-auto"></MdDashboard></NavLink>
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg text-white"} to="/">Home</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/"><MdDashboard className="text-xl xl:text-3xl mx-auto"></MdDashboard></NavLink>
             }
           </li>
           <li>
             {
-              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg text-white"} to="/user-order-table">UserOrder</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/user-order-table"><MdNotificationAdd className="text-xl xl:text-3xl mx-auto"></MdNotificationAdd></NavLink>
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg text-white"} to="/user-order-table">UserOrder</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/user-order-table"><MdNotificationAdd className="text-xl xl:text-3xl mx-auto"></MdNotificationAdd></NavLink>
             }
           </li>
           <li>
             {
-              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg text-white"} to="/all-users">AllUsers</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/all-users"><FaUsers className="text-xl xl:text-3xl mx-auto"></FaUsers></NavLink>
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg text-white"} to="/all-users">AllUsers</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/all-users"><FaUsers className="text-xl xl:text-3xl mx-auto"></FaUsers></NavLink>
             }
           </li>
           <li>
             {
-              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg text-white"} to="/order-table">Order</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/order-table"><FaEdit className="text-xl xl:text-3xl mx-auto"></FaEdit></NavLink>
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg text-white"} to="/order-table">Order</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/order-table"><FaEdit className="text-xl xl:text-3xl mx-auto"></FaEdit></NavLink>
             }
           </li>
           <li>
             {
-              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg text-white"} to="/create-product">CreateProduct</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-product"><FaWpforms className="text-xl xl:text-3xl mx-auto"></FaWpforms></NavLink>
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg text-white"} to="/create-product">CreateProduct</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-product"><FaWpforms className="text-xl xl:text-3xl mx-auto"></FaWpforms></NavLink>
             }
             
           </li>
         </ul>
         <div>
           {
-            active ? <button className="md:text-[11px] lg:text-[13px] xl:text-sm 2xl:text-lg font-bold text-green-500">LogOut</button> : <IoLogOut className="text-2xl xl:text-3xl mx-auto text-green-500"></IoLogOut>
+            active ? <button className="md:text-[10px] lg:text-xs xl:text-sm 2xl:text-lg font-bold text-green-500">LogOut</button> : <IoLogOut className="text-2xl xl:text-3xl mx-auto text-green-500"></IoLogOut>
           }
           
         </div>
