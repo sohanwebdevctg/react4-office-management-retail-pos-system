@@ -16,6 +16,12 @@ const setUser = (data) => {
   
 }
 
+const deleteUser = (id) => {
+  const getPreviousUser = getUser();
+  const newUser = getPreviousUser.filter((data) => data.id !== id  );
+  localStorage.setItem('userInfo', JSON.stringify(newUser));
+}
+
 const removeUser = () => {
   return localStorage.removeItem('userInfo');
 }
@@ -48,4 +54,4 @@ const removeData = () => {
 /* data add in cart end */
 
 
-export { getUser, setUser, removeUser, getData, setData, removeData }
+export { getUser, setUser, deleteUser ,removeUser, getData, setData, removeData }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Title from "../../Components/Title/Title";
-import { getUser, removeUser, setUser } from "../../utilities/localstorage";
+import { deleteUser, getUser } from "../../utilities/localstorage";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
@@ -11,9 +12,16 @@ const AllUsers = () => {
   console.log(users)
   
 
-  const deleteUser = (item) => {
-    // const valid = users.filter((data) => data.email != item.email && data.userType != item.userType);
-    console.log(item);
+  const deleteSingleUser = (id) => {
+    deleteUser(id);
+    Swal.fire({
+      position: "middle",
+      icon: "success",
+      title: "Your user has been deleted successfully!",
+      showConfirmButton: false,
+      timer: 1000
+    });
+    location.reload();
   }
 
   return (
@@ -39,6 +47,7 @@ const AllUsers = () => {
                   <th>#</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Active</th>
                   <th>User</th>
                   <th>Delete</th>
                 </tr>
@@ -50,8 +59,9 @@ const AllUsers = () => {
                     <td>{++index}</td>
                     <td><p>{item?.name}</p></td>
                     <td>{item?.email}</td>
+                    <td>{item?.active === true ? 'active' : 'deactive'}</td>
                     <td>{item?.userType}</td>
-                    <td><button onClick={() => deleteUser(item)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
+                    <td><button onClick={() => deleteSingleUser(item?.id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
                   </tr>)
                   }
                 </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)

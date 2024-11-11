@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
   const [user, setUser] = useState(() => getUser());
 
   // checking user
-  let validUser = user.find((item) => item.email && item.user === true)
+  let validUser = user.find((item) => item.email && item.active === true)
 
   if(validUser){
     return children;

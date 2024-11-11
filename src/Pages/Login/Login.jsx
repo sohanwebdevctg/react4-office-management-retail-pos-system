@@ -16,7 +16,7 @@ const Login = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    let user = true;
+    let active = true;
     let userType = "user";
 
     if(name === "admin" && email === "admin@gmail.com"){
@@ -30,7 +30,7 @@ const Login = () => {
         text: "Something went wrong!",
       });
     } else {
-      const userValue = {name: name, email: email, user: user, userType: userType };
+      const userValue = {id : parseInt(Math.random() * 1000),name: name, email: email, active: active, userType: userType };
       Swal.fire({
         position: "middle",
         icon: "success",
