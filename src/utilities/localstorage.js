@@ -30,16 +30,16 @@ const removeUser = () => {
 
 
 /* data add in cart start */
-const getData = () => {
+const getCartData = () => {
 
   const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
   return cartData;
 
 }
 
-const setData = (data) => {
+const setCartData = (data) => {
 
-  let previousData = getData();
+  let previousData = getCartData();
 
   // set new data with previous data
   previousData.push(data);
@@ -47,11 +47,11 @@ const setData = (data) => {
 
 }
 
-const removeData = () => {
+const removeCartData = () => {
   return localStorage.removeItem('cartData');
 }
 
 /* data add in cart end */
 
 
-export { getUser, setUser, deleteUser ,removeUser, getData, setData, removeData }
+export { getUser, setUser, deleteUser ,removeUser, getCartData, setCartData, removeCartData }

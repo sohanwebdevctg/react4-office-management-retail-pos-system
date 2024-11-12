@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getUser } from "../../utilities/localstorage";
+import { getUser, setCartData } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 
 
@@ -30,6 +30,7 @@ const OrderData = ({totalItem}) => {
         showConfirmButton: false,
         timer: 1000
       });
+      setCartData(setData);
       location.reload();
     }else{
       Swal.fire({
