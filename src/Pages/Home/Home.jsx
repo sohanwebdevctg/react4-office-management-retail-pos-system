@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Title from "../../Components/Title/Title";
 import Cart from "./Cart";
 import OrderData from "./OrderData";
+import Swal from "sweetalert2";
 
 
 const Home = () => {
@@ -25,8 +26,8 @@ const Home = () => {
   // set total data
   const [totalItem, setTotalItem] = useState([])
 
+  // add data
   let addData = (item) => {
-
     const data = {
       id: item.id,
       image: item.image,
@@ -34,8 +35,23 @@ const Home = () => {
       quantity: parseInt(quantity),
       total: parseInt(quantity) * item.price || item.price
     }
-    let previousData = [...totalItem, data]
-    setTotalItem(previousData);
+    // checking data
+    let check = totalItem.find((previous) => previous.id === item.id)
+    if(check){
+
+      Swal.fire({
+        position: "middle",
+        icon: "error",
+        title: "your data already exists!",
+        showConfirmButton: false,
+        timer: 1000
+      });
+
+    }else{
+      let previousData = [...totalItem, data];
+      setTotalItem(previousData);
+    }
+    
   }
 
 
