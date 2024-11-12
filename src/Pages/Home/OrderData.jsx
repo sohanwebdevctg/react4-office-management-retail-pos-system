@@ -19,6 +19,7 @@ const OrderData = ({totalItem}) => {
 
     const setData = {
       name: name,
+      email: email,
       data: totalItem
     }
 
