@@ -1,10 +1,12 @@
+import { useState } from "react";
 import Title from "../../Components/Title/Title";
+import { getCartData } from "../../utilities/localstorage";
 
 
 const UserOrderTable = () => {
 
-  const data = true;
-
+  // cart data
+  const [data, setCart] = useState(() => getCartData());
 
   return (
     <>
@@ -27,21 +29,21 @@ const UserOrderTable = () => {
               <thead className="bg-red-600 text-white">
                 <tr>
                   <th>#</th>
+                  <th>Image</th>
                   <th>Name</th>
-                  <th>Email</th>
-                  <th>User</th>
-                  <th>Delete</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               {
-                data?.length > 0 ? (<tbody>
+                data?.data?.length > 0 ? (<tbody>
                   {
-                    data.map((item, index) => <tr key={index} className="hover:bg-slate-100">
+                    data?.data?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
                     <td>{++index}</td>
+                    <td><img className="h-6 w-6" src={item.image}></img></td>
                     <td><p>{item?.name}</p></td>
-                    <td>{item?.email}</td>
-                    <td>{item?.user}</td>
-                    <td><button className="btn btn-red-400 text-white">Delete</button></td>
+                    <td>{item?.quantity}</td>
+                    <td>{item?.total}</td>
                   </tr>)
                   }
                 </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)

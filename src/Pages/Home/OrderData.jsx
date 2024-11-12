@@ -20,7 +20,7 @@ const OrderData = ({totalItem}) => {
     const setData = {
       name: name,
       email: email,
-      data: totalItem
+      cart: totalItem
     }
 
     if(validUser.name === name && validUser.email === email){

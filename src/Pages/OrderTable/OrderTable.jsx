@@ -16,10 +16,10 @@ const OrderTable = () => {
   // cart data
   const [data, setCart] = useState(() => getCartData())
 
-  let validData = data.find((item) => item.email && item.name);
+  let validData = data.find((item) => item?.email && item?.name);
   
   if(validData?.email === validUser?.email && validData?.name === validUser?.name){
-    setCart(validData.data)
+    setCart(validData.data?.cart)
   }
   
 
@@ -51,9 +51,9 @@ const OrderTable = () => {
                 </tr>
               </thead>
               {
-                data?.length > 0 ? (<tbody>
+                data?.cart?.length > 0 ? (<tbody>
                   {
-                    data.map((item, index) => <tr key={index} className="hover:bg-slate-100">
+                    data?.cart?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
                     <td>{++index}</td>
                     <td><img className="h-6 w-6" src={item.image}></img></td>
                     <td><p>{item?.name}</p></td>
