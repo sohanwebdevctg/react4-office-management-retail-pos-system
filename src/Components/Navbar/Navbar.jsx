@@ -2,14 +2,19 @@ import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose, IoLogOut } from "react-icons/io5";
 import { MdNotificationAdd,MdDashboard } from "react-icons/md";
-import { FaUsers, FaEdit, FaWpforms, FaUserShield} from "react-icons/fa";
+import { FaUsers, FaEdit, FaWpforms, FaUserShield, FaUserCircle} from "react-icons/fa";
 import { removeUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 // import logoImg from '../../../public/logo/logo.png'
 
 
 const Navbar = ({active,toggleSideBar}) => {
+
+  // get user data
+  const {validUser} = useContext(AuthContext);
 
   //logout function
   const logOutFun = () => {
@@ -40,29 +45,42 @@ const Navbar = ({active,toggleSideBar}) => {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/">Home</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/"><MdDashboard className="text-xl xl:text-3xl mx-auto"></MdDashboard></NavLink>
             }
           </li>
-          <li>
+          {
+            validUser?.userType === "admin" && <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/user-order-table">UserOrder</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/user-order-table"><MdNotificationAdd className="text-xl xl:text-3xl mx-auto"></MdNotificationAdd></NavLink>
             }
           </li>
-          <li>
+          }
+          {
+            validUser?.userType === "admin" && <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/all-users">AllUsers</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/all-users"><FaUsers className="text-xl xl:text-3xl mx-auto"></FaUsers></NavLink>
             }
           </li>
+          }
           <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/order-table">Order</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/order-table"><FaEdit className="text-xl xl:text-3xl mx-auto"></FaEdit></NavLink>
             }
           </li>
-          <li>
+          {
+            validUser?.userType === "admin" &&  <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/create-users">CreateUsers</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-users"><FaUserShield className="text-xl xl:text-3xl mx-auto"></FaUserShield></NavLink>
             }
           </li>
-          <li>
+          }
+          {
+            validUser?.userType === "admin" && <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/create-product">CreateProduct</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-product"><FaWpforms className="text-xl xl:text-3xl mx-auto"></FaWpforms></NavLink>
+            }
+          </li>
+          }
+          <li>
+            {
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/user-profile">UserProfile</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/user-profile"><FaUserCircle className="text-xl xl:text-3xl mx-auto"></FaUserCircle></NavLink>
             }
           </li>
         </ul>
