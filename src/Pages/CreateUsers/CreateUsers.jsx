@@ -8,14 +8,42 @@ const CreateUsers = () => {
   const createProduct = (event) => {
     event.preventDefault();
     const form = event.target;
-    form.reset();
-    Swal.fire({
-      position: "middle",
-      icon: "success",
-      title: "Your data has been saved",
-      showConfirmButton: false,
-      timer: 1000
-    });
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const status = form.status.value;
+    const userType = form.userType.value;
+    const password = form.password.value;
+
+    const userInfo = {name,email, status, userType, password}
+
+    fetch('http://localhost:5000/users',{
+      method : 'POST',
+      headers: { 'content-type' : 'application/json'},
+      body : JSON.stringify(userInfo)
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if(data.insertedId){
+      Swal.fire({
+        position: "middle",
+        icon: "success",
+        title: "Your data has been saved",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      form.reset();
+      }
+    })
+
+    // form.reset();
+    // Swal.fire({
+    //   position: "middle",
+    //   icon: "success",
+    //   title: "Your data has been saved",
+    //   showConfirmButton: false,
+    //   timer: 1000
+    // });
   }
 
   return (
@@ -42,23 +70,37 @@ const CreateUsers = () => {
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Price</span>
+              <span className="label-text">Email</span>
             </label>
-            <input type="text" name="price" placeholder="enter product price" className="input input-bordered input-sm sm:input-md" required />
+            <input type="email" name="email" placeholder="enter your email" className="input input-bordered input-sm sm:input-md" required />
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-3">
+          <div className="form-control w-full">
+            <label className="label" >
+              <span className="label-text">Status</span>
+            </label>
+            <select name="status" className="select select-bordered select-sm md:select-md w-full">
+  <option selected value={true}>true</option>
+  <option value={false}>false</option>
+</select>
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">UserType</span>
+            </label>
+            <select name="userType" className="select select-bordered select-sm md:select-md w-full">
+  <option selected value="user">User</option>
+  <option value="admin">Admin</option>
+</select>
           </div>
         </div>
         <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Image</span>
+              <span className="label-text">Password</span>
             </label>
-            <input type="file" name="image" className="file-input w-full file-input-bordered file-input-sm sm:file-input-md" required/>
-        </div>
-        <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Details</span>
-            </label>
-            <textarea required name="details" placeholder="enter details" className="textarea textarea-bordered textarea-sm w-full"></textarea>
-        </div>
+            <input type="password" name="password" placeholder="enter product password" className="input input-bordered input-sm sm:input-md" required />
+          </div>
         <div className="form-control mt-3">
           <button className="py-2 w-full bg-green-500 hover:bg-hover-500 text-white font-bold rounded-md">Create</button>
         </div>
