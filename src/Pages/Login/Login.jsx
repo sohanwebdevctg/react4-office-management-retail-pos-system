@@ -1,13 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 import Title from "../../Components/Title/Title";
-
 import img from "../../../public/login/logImg.png";
+import { useState } from "react";
+
 
 const Login = () => {
+
+  //set user
+  const [user, setUser] = useState(null)
+
   //navigate the user
   const navigate = useNavigate();
+
+
 
   const loginFun = (event) => {
     event.preventDefault();
@@ -16,13 +22,11 @@ const Login = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    let active = true;
-    let userType = "user";
 
-    if(name === "admin" && email === "admin@gmail.com"){
-      userType = "admin";
-    }
+    // get user information
+    const data = {name: name, email: email, password : password}
 
+    // checking validation
     if (name === null && email === null && password === null) {
       Swal.fire({
         icon: "error",
@@ -30,16 +34,37 @@ const Login = () => {
         text: "Something went wrong!",
       });
     } else {
-      const userValue = {id : parseInt(Math.random() * 1000),name: name, email: email, active: active, userType: userType };
-      Swal.fire({
+      // checking user data
+      fetch('http://localhost:5000/checkUsers',{
+        method: 'POST',
+        headers : {'content-type' : 'application/json'},
+        body : JSON.stringify(data)
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.name === name && data.password === password && data.email === email){
+        Swal.fire({
         position: "middle",
         icon: "success",
         title: "You are now Logged in",
         showConfirmButton: false,
         timer: 1500,
       });
-      // form.reset();
-      // navigate("/");
+        setUser(data)
+        form.reset();
+        navigate("/");
+        }else{
+          Swal.fire({
+            position: "middle",
+            icon: "error",
+            title: "You are invalid user",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+
+
     }
   };
 
