@@ -1,20 +1,29 @@
-
-import { useState } from "react";
-import {  getUser } from "../../utilities/localstorage";
 import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose, IoLogOut } from "react-icons/io5";
 import { MdNotificationAdd,MdDashboard } from "react-icons/md";
 import { FaUsers, FaEdit, FaWpforms, FaUserShield} from "react-icons/fa";
+import { removeUser } from "../../utilities/localstorage";
+import Swal from "sweetalert2";
 
 // import logoImg from '../../../public/logo/logo.png'
 
 
 const Navbar = ({active,toggleSideBar}) => {
 
+  //logout function
+  const logOutFun = () => {
+    removeUser();
+    Swal.fire({
+      position: "middle",
+      icon: "success",
+      title: "You are now Logged out",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    location.reload();
+  }
 
-  // user data
-  const [user, setUser] = useState(() => getUser());
 
   return (
     <>
@@ -57,7 +66,7 @@ const Navbar = ({active,toggleSideBar}) => {
             }
           </li>
         </ul>
-        <div>
+        <div onClick={logOutFun}>
           {
             active ? <button className="md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500">LogOut</button> : <IoLogOut className="text-2xl xl:text-3xl mx-auto text-green-500"></IoLogOut>
           }

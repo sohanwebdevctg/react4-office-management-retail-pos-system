@@ -1,17 +1,15 @@
-import { useState } from "react";
-import { getUser } from "../utilities/localstorage";
+import { useContext} from "react";
 import { Navigate} from "react-router-dom";
+import { AuthContext } from "../Components/AuthProvider/AuthProvider";
 
 
 const PrivateRoute = ({children}) => {
 
-  // user data
-  const [user, setUser] = useState(() => getUser());
+  // get user data
+  const {validUser} = useContext(AuthContext);
 
   // checking user
-  let validUser = user.find((item) => item.email && item.active === true)
-
-  if(validUser){
+  if(validUser?.name && validUser?.email && validUser?.userType){
     return children;
   }else{
     return <Navigate to="/login"></Navigate>

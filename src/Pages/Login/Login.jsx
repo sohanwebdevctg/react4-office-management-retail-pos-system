@@ -2,18 +2,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Title from "../../Components/Title/Title";
 import img from "../../../public/login/logImg.png";
-import { useState } from "react";
+import { setUser } from "../../utilities/localstorage";
 
 
 const Login = () => {
 
-  //set user
-  const [user, setUser] = useState(null)
-
   //navigate the user
   const navigate = useNavigate();
-
-
 
   const loginFun = (event) => {
     event.preventDefault();
@@ -42,6 +37,14 @@ const Login = () => {
       })
       .then((res) => res.json())
       .then((data) => {
+        
+        // get user data in database
+        const userData = {name : data.name, email : data.email, userType : data.userType}
+        // setLocalStorage
+        setUser(userData)
+        form.reset();
+        navigate("/");
+        location.reload();
         if(data.name === name && data.password === password && data.email === email){
         Swal.fire({
         position: "middle",
@@ -50,9 +53,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-        setUser(data)
-        form.reset();
-        navigate("/");
+      
         }else{
           Swal.fire({
             position: "middle",
@@ -63,8 +64,6 @@ const Login = () => {
           });
         }
       })
-
-
     }
   };
 

@@ -1,27 +1,10 @@
-import { useState } from "react";
+
 import Title from "../../Components/Title/Title";
-import { getCartData, getUser } from "../../utilities/localstorage";
 
 
 const OrderTable = () => {
 
-  // user data
-  const [user, setUser] = useState(() => getUser());
-
-  // checking user
-  let validUser = user.find((item) => item?.email && item?.name);
-  
-
-
-  // cart data
-  const [data, setCart] = useState(() => getCartData())
-
-  let validData = data.find((item) => item?.email && item?.name);
-  
-  if(validData?.email === validUser?.email && validData?.name === validUser?.name){
-    setCart(validData.data?.cart)
-  }
-  
+  const data = [];
 
   return (
     <>

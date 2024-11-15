@@ -1,15 +1,11 @@
 import { useState } from "react";
-import { getUser, setCartData } from "../../utilities/localstorage";
+import { getUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 
 
 const OrderData = ({totalItem}) => {
 
-  // user data
-  const [user, setUser] = useState(() => getUser());
-
-  // checking user
-  let validUser = user.find((item) => item.email && item.name)
+  const validUser = {name : 'abcd', email : 'abc@gmail.com'}
 
   const setDataFun = (event) => {
     event.preventDefault();
@@ -31,7 +27,7 @@ const OrderData = ({totalItem}) => {
         showConfirmButton: false,
         timer: 1000
       });
-      setCartData(setData);
+      // setCartData(setData);
       location.reload();
     }else{
       Swal.fire({

@@ -13,20 +13,28 @@ const AllUsers = () => {
     fetch('http://localhost:5000/allUsers')
     .then((res) => res.json())
     .then((data) => setAllUsers(data))
-  },[])
-
-  console.log(allUsers)
+  },[]);
   
 
+  // delete single user
   const deleteSingleUser = (id) => {
-    Swal.fire({
-      position: "middle",
-      icon: "success",
-      title: "Your user has been deleted successfully!",
-      showConfirmButton: false,
-      timer: 1000
-    });
-    location.reload();
+    fetch(`http://localhost:5000/users/${id}`,{
+      method: 'DELETE'
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if(data.deletedCount){
+        Swal.fire({
+          position: "middle",
+          icon: "success",
+          title: "Your user has been deleted successfully!",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        const newUser = allUsers.filter((item) => item._id !== id);
+        setAllUsers(newUser);
+      }
+    })
   }
 
   return (
@@ -66,7 +74,7 @@ const AllUsers = () => {
                     <td>{item?.email}</td>
                     <td>{item?.status}</td>
                     <td>{item?.userType}</td>
-                    <td><button onClick={() => deleteSingleUser(item?.id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
+                    <td><button onClick={() => deleteSingleUser(item?._id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
                   </tr>)
                   }
                 </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)

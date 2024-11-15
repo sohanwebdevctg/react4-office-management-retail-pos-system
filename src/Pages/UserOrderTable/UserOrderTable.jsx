@@ -1,12 +1,10 @@
-import { useState } from "react";
+
 import Title from "../../Components/Title/Title";
-import { getCartData } from "../../utilities/localstorage";
 
 
 const UserOrderTable = () => {
 
-  // cart data
-  const [data, setCart] = useState(() => getCartData());
+  const data = [];
 
   return (
     <>
