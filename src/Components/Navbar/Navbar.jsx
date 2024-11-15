@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose, IoLogOut } from "react-icons/io5";
 import { MdNotificationAdd,MdDashboard } from "react-icons/md";
-import { FaUsers, FaEdit, FaWpforms} from "react-icons/fa";
+import { FaUsers, FaEdit, FaWpforms, FaUserShield} from "react-icons/fa";
 
 // import logoImg from '../../../public/logo/logo.png'
 
@@ -48,9 +48,13 @@ const Navbar = ({active,toggleSideBar}) => {
           </li>
           <li>
             {
+              active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/create-users">CreateUsers</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-users"><FaUserShield className="text-xl xl:text-3xl mx-auto"></FaUserShield></NavLink>
+            }
+          </li>
+          <li>
+            {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/create-product">CreateProduct</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/create-product"><FaWpforms className="text-xl xl:text-3xl mx-auto"></FaWpforms></NavLink>
             }
-            
           </li>
         </ul>
         <div>

@@ -38,9 +38,8 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setUser(userValue);
-      form.reset();
-      navigate("/");
+      // form.reset();
+      // navigate("/");
     }
   };
 

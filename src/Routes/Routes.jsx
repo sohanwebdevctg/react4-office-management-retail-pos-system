@@ -8,6 +8,7 @@ import CreateProduct from "../Pages/CreateProduct/CreateProduct";
 import OrderTable from "../Pages/OrderTable/OrderTable";
 import UserOrderTable from "../Pages/UserOrderTable/UserOrderTable";
 import AllUsers from "../Pages/AllUsers/AllUsers";
+import CreateUsers from "../Pages/CreateUsers/CreateUsers";
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/create-product',
         element: <CreateProduct></CreateProduct>
+      },
+      {
+        path: '/create-users',
+        element: <CreateUsers></CreateUsers>
       },
     ]
   },
