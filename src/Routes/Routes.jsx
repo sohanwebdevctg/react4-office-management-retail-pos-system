@@ -9,6 +9,7 @@ import UserOrderTable from "../Pages/UserOrderTable/UserOrderTable";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import CreateUsers from "../Pages/CreateUsers/CreateUsers";
 import PrivateRoute from "./PrivateRoute";
+import UserProfile from "../Pages/UserProfile/UserProfile";
 
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/create-users',
         element: <CreateUsers></CreateUsers>
+      },
+      {
+        path: '/user-profile',
+        element: <UserProfile></UserProfile>
       },
     ]
   },
