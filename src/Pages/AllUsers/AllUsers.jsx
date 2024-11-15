@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "../../Components/Title/Title";
-import { deleteUser, getUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
 
   // user data
-  const [users, setUsers] = useState(() => getUser());
+  const [allUsers, setAllUsers] = useState([]);
 
-  console.log(users)
+  // allUsers
+  useEffect(() => {
+    fetch('http://localhost:5000/allUsers')
+    .then((res) => res.json())
+    .then((data) => setAllUsers(data))
+  },[])
+
+  console.log(allUsers)
   
 
   const deleteSingleUser = (id) => {
-    deleteUser(id);
     Swal.fire({
       position: "middle",
       icon: "success",
@@ -53,13 +58,13 @@ const AllUsers = () => {
                 </tr>
               </thead>
               {
-                users?.length > 0 ? (<tbody>
+                allUsers?.length > 0 ? (<tbody>
                   {
-                    users.map((item, index) => <tr key={index} className="hover:bg-slate-100">
+                    allUsers.map((item, index) => <tr key={index} className="hover:bg-slate-100">
                     <td>{++index}</td>
                     <td><p>{item?.name}</p></td>
                     <td>{item?.email}</td>
-                    <td>{item?.active === true ? 'active' : 'deactive'}</td>
+                    <td>{item?.status}</td>
                     <td>{item?.userType}</td>
                     <td><button onClick={() => deleteSingleUser(item?.id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
                   </tr>)
