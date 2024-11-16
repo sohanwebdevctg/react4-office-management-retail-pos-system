@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { getUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
 
 
-const OrderData = ({totalItem}) => {
+const OrderData = ({totalItem, deleteFun}) => {
+
+  
 
   const validUser = {name : 'abcd', email : 'abc@gmail.com'}
 
@@ -46,7 +47,7 @@ const OrderData = ({totalItem}) => {
       {/* content section start */}
       {/* table start */}
       <div className="h-1/2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white">
-        <table className="w-full">
+        <table className="table w-full">
               {/* head */}
               <thead className="bg-green-500 text-white w-full">
                 <tr>
@@ -55,6 +56,7 @@ const OrderData = ({totalItem}) => {
                   <td className="text-xs">Name</td>
                   <td className="text-xs">Quantity</td>
                   <td className="text-xs">Total</td>
+                  <td className="text-xs">Delete</td>
                 </tr>
               </thead>
               {
@@ -63,12 +65,13 @@ const OrderData = ({totalItem}) => {
                     totalItem.map((item, index) => <tr key={index} className="hover:bg-slate-100 w-full">
                     <td className="text-xs">{++index}</td>
                     <td><img src={item.image} className="w-5 h-5"></img></td>
-                    <td><p className="text-[10px]">{item?.name}</p></td>
+                    <td><p className="text-[10px]">{item?.name.slice(0,5)}</p></td>
                     <td><p className="text-[10px]">{item?.quantity}</p></td>
                     <td><p className="text-[10px]">{item?.total}</p></td>
+                    <td><button onClick={() => deleteFun(item.id)} className="text-[10px] btn btn-xs bg-red-600 hover:bg-red-600 text-white">Delete</button></td>
                   </tr>)
                   }
-                </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)
+                </tbody>) : (<p className="w-full">No data</p>)
               }
         </table>
       </div>
