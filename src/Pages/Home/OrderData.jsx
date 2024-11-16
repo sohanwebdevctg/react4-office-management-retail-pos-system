@@ -1,12 +1,13 @@
-import { getUser } from "../../utilities/localstorage";
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 
 
 const OrderData = ({totalItem, deleteFun}) => {
 
   
 
-  const validUser = {name : 'abcd', email : 'abc@gmail.com'}
+  const {validUser} = useContext(AuthContext);
 
   const setDataFun = (event) => {
     event.preventDefault();
@@ -28,8 +29,8 @@ const OrderData = ({totalItem, deleteFun}) => {
         showConfirmButton: false,
         timer: 1000
       });
-      // setCartData(setData);
-      location.reload();
+      console.log(setData)
+      // location.reload();
     }else{
       Swal.fire({
         position: "middle",

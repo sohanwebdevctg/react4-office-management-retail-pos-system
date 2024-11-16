@@ -7,8 +7,6 @@ const UserProfile = () => {
 
   const {validUser} = useContext(AuthContext);
 
-  console.log(validUser)
-
   return (
     <>
     {/* title start */}
