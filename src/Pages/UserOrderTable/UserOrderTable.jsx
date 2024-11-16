@@ -1,10 +1,13 @@
 
+import { useLoaderData } from "react-router-dom";
 import Title from "../../Components/Title/Title";
+import { useState } from "react";
 
 
 const UserOrderTable = () => {
 
-  const data = [];
+  const loaderData = useLoaderData();
+  const [data, setData] = useState(loaderData);
 
   return (
     <>
@@ -34,9 +37,9 @@ const UserOrderTable = () => {
                 </tr>
               </thead>
               {
-                data?.data?.length > 0 ? (<tbody>
+                data?.length > 0 ? (<tbody>
                   {
-                    data?.data?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
+                    data?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
                     <td>{++index}</td>
                     <td><img className="h-6 w-6" src={item.image}></img></td>
                     <td><p>{item?.name}</p></td>

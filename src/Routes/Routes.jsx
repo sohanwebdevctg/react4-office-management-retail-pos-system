@@ -26,7 +26,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/user-order-table',
-        element: <UserOrderTable></UserOrderTable>
+        element: <UserOrderTable></UserOrderTable>,
+        loader : () => fetch('http://localhost:5000/allOrders')
       },
       {
         path: '/all-users',
