@@ -1,15 +1,18 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Title from "../../Components/Title/Title";
 import Cart from "./Cart";
 import OrderData from "./OrderData";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 
 
 const Home = () => {
 
   // allProducts data
-  const loaderData = useLoaderData()
+  const loaderData = useLoaderData();
+
+  const {validUser} = useContext(AuthContext);
 
   // loading data
   const [allProducts, setAllProducts] = useState(loaderData)
@@ -29,9 +32,12 @@ const Home = () => {
   let addData = (item) => {
     const data = {
       id: item.id,
+      name : validUser.name,
+      email : validUser.email,
       image: item.image,
-      name: item.name,
+      productName: item.productName,
       quantity: parseInt(quantity),
+      product: "reject",
       total: parseInt(quantity) * item.price || item.price
     }
     // checking data
@@ -76,7 +82,10 @@ const Home = () => {
         {/* cart-item end */}
         {/* quantity start */}
         <div className="sm:w-[35%] hidden sm:block px-5">
-          <OrderData deleteFun={deleteFun} totalItem={totalItem}></OrderData>
+          <OrderData deleteFun={deleteFun}
+          totalItem={totalItem}
+          setTotalItem={setTotalItem}
+          ></OrderData>
         </div>
         {/* quantity end */}
       </div>
