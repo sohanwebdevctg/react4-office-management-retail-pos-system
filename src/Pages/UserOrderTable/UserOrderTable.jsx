@@ -1,30 +1,78 @@
-
 import { useLoaderData } from "react-router-dom";
 import Title from "../../Components/Title/Title";
 import { useState } from "react";
-
+import Swal from "sweetalert2";
 
 const UserOrderTable = () => {
-
+  // loading data
   const loaderData = useLoaderData();
   const [data, setData] = useState(loaderData);
+
+  // delete Item
+  const deleteItem = (_id) => {
+    fetch(`http://localhost:5000/allOrders/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          const previousData = loaderData.filter((item) => item._id !== _id);
+          setData(previousData);
+          Swal.fire({
+            position: "middle",
+            icon: "success",
+            title: "data has been deleted",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          location.reload();
+        }
+      });
+  };
+
+  // productFun
+  const productFun = (_id) => {
+
+    const product = {product : "approved"};
+
+    fetch(`http://localhost:5000/allOrders/${_id}`,{
+      method : 'PUT',
+      headers : { 'content-type' : 'application/json'},
+      body : JSON.stringify(product)
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if(data.acknowledged){
+        Swal.fire({
+          position: "middle",
+          icon: "success",
+          title: "data has been update",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        location.reload();
+      }
+    })
+  }
 
   return (
     <>
       {/* title start */}
-      <Title name={'User-Order-Table'}></Title>
+      <Title name={"User-Order-Table"}></Title>
       {/* title end */}
-                  {/* content start */}
-                  <div className="my-8 xl:my-10 ">
+      {/* content start */}
+      <div className="my-8 xl:my-10">
         {/* content section start */}
         <div className="container mx-auto px-5 lg:px-8 xl:px-10 ">
           {/* table title start */}
           <div className="w-[66%] sm:w-[38%] md:w-[29%] lg:w-[26%] xl:w-[25%] 2xl:w-[26%] mx-auto">
-            <h3 className="font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-center border-b-2 border-b-red-500 text-red-500">User-Order-Table</h3>
+            <h3 className="font-bold text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-center border-b-2 border-b-red-500 text-red-500">
+              User-Order-Table
+            </h3>
           </div>
           {/* table title end */}
           {/* table start */}
-          <div className="overflow-x-auto mt-5">
+          <div className="overflow-x-auto mt-5 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white h-[400px]">
             <table className="table">
               {/* head */}
               <thead className="bg-red-600 text-white">
@@ -32,24 +80,49 @@ const UserOrderTable = () => {
                   <th>#</th>
                   <th>Image</th>
                   <th>Name</th>
+                  <th>Request</th>
                   <th>Quantity</th>
                   <th>Total</th>
+                  <th>User</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
-              {
-                data?.length > 0 ? (<tbody>
-                  {
-                    data?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
-                    <td>{++index}</td>
-                    <td><img className="h-6 w-6" src={item.image}></img></td>
-                    <td><p>{item?.name}</p></td>
-                    <td>{item?.quantity}</td>
-                    <td>{item?.total}</td>
-                  </tr>)
-                  }
-                </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)
-              }
-              
+              {data?.length > 0 ? (
+                <tbody>
+                  {data?.map((item, index) => (
+                    <tr key={index} className="hover:bg-slate-100">
+                      <td>{++index}</td>
+                      <td>
+                        <img className="h-6 w-6" src={item.image}></img>
+                      </td>
+                      <td>
+                        <p>{item?.productName}</p>
+                      </td>
+                      <td>
+                        {
+                            item?.product === 'pending' ? <button className="bg-red-500 text-white p-1 rounded-md text-[9px]" onClick={() => productFun(item._id)}>pending</button> : <span className="bg-green-500 text-white p-1 rounded-md text-[9px]">approved</span>
+                          }
+                      </td>
+                      <td>{item?.quantity}</td>
+                      <td>{item?.total}</td>
+                      <td>
+                        <p>{item?.name}</p>
+                        <p>{item?.email}</p>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => deleteItem(item?._id)}
+                          className="text-[10px] btn btn-xs bg-red-600 hover:bg-red-600 text-white"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              ) : (
+                <p className="text-center mx-auto w-full">No data available</p>
+              )}
             </table>
           </div>
           {/* table end */}

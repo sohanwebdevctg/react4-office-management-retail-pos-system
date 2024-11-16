@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { useState } from "react";
 import Title from "../../Components/Title/Title";
-import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
+import { getUser } from "../../utilities/localstorage";
 
 
 const UserProfile = () => {
 
-  const {validUser} = useContext(AuthContext);
+  const [validUser, setValidUser] = useState(() => getUser());
 
   return (
     <>

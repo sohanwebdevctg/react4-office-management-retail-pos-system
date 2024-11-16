@@ -37,14 +37,6 @@ const Login = () => {
       })
       .then((res) => res.json())
       .then((data) => {
-        
-        // get user data in database
-        const userData = {name : data.name, email : data.email, userType : data.userType}
-        // setLocalStorage
-        setUser(userData)
-        form.reset();
-        navigate("/");
-        location.reload();
         if(data.name === name && data.password === password && data.email === email){
         Swal.fire({
         position: "middle",
@@ -53,7 +45,13 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      
+      // get user data in database
+      const userData = {name : data.name, email : data.email, userType : data.userType}
+      // setLocalStorage
+      setUser(userData)
+      form.reset();
+        // location.reload();
+        navigate("/");
         }else{
           Swal.fire({
             position: "middle",
@@ -65,6 +63,7 @@ const Login = () => {
         }
       })
     }
+    
   };
 
   return (

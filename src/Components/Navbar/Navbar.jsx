@@ -3,10 +3,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose, IoLogOut } from "react-icons/io5";
 import { MdNotificationAdd,MdDashboard } from "react-icons/md";
 import { FaUsers, FaEdit, FaWpforms, FaUserShield, FaUserCircle} from "react-icons/fa";
-import { removeUser } from "../../utilities/localstorage";
+import { getUser, removeUser } from "../../utilities/localstorage";
 import Swal from "sweetalert2";
-import { useContext } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+import { useState } from "react";
 
 // import logoImg from '../../../public/logo/logo.png'
 
@@ -14,7 +13,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 const Navbar = ({active,toggleSideBar}) => {
 
   // get user data
-  const {validUser} = useContext(AuthContext);
+  const [validUser, setValidUser] = useState(() => getUser());
 
   //logout function
   const logOutFun = () => {
@@ -59,11 +58,13 @@ const Navbar = ({active,toggleSideBar}) => {
             }
           </li>
           }
-          <li>
+          {
+            validUser?.userType === "user" && <li>
             {
               active ? <NavLink className={({ isActive }) => isActive ? "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm font-bold text-green-500": "md:text-[10px] lg:text-xs xl:text-sm 2xl:text-sm text-white"} to="/order-table">Order</NavLink> : <NavLink className={({ isActive }) => isActive ? " text-green-500": " text-white"} to="/order-table"><FaEdit className="text-xl xl:text-3xl mx-auto"></FaEdit></NavLink>
             }
           </li>
+          }
           {
             validUser?.userType === "admin" &&  <li>
             {

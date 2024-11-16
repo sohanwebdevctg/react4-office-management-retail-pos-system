@@ -1,12 +1,12 @@
-import { useContext} from "react";
+import { useState} from "react";
 import { Navigate} from "react-router-dom";
-import { AuthContext } from "../Components/AuthProvider/AuthProvider";
+import { getUser } from "../utilities/localstorage";
 
 
 const PrivateRoute = ({children}) => {
 
-  // get user data
-  const {validUser} = useContext(AuthContext);
+  //user
+  const [validUser, setValidUser] = useState(() => getUser());
 
   // checking user
   if(validUser?.name && validUser?.email && validUser?.userType){

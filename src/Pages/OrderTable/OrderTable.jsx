@@ -1,10 +1,48 @@
 
+import { useEffect, useState } from "react";
 import Title from "../../Components/Title/Title";
+import { getUser } from "../../utilities/localstorage";
+import Swal from "sweetalert2";
 
 
 const OrderTable = () => {
 
-  const data = [];
+  // get user data
+  const [validUser, setValidUser] = useState(() => getUser());
+
+  // loading data
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/userOrder/${validUser?.email}`)
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data)
+    })
+  }, [validUser]);
+
+  console.log(data)
+
+  // delete Item
+  const deleteItem = (_id) => {
+    fetch(`http://localhost:5000/allOrders/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        if (data.deletedCount) {
+          Swal.fire({
+            position: "middle",
+            icon: "success",
+            title: "data has been deleted",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          location.reload();
+        }
+      });
+  };
 
   return (
     <>
@@ -21,32 +59,52 @@ const OrderTable = () => {
           </div>
           {/* table title end */}
           {/* table start */}
-          <div className="overflow-x-auto mt-5">
-            <table className="table">
+          <div className="overflow-x-auto mt-5 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white h-[400px]">
+          <table className="table">
               {/* head */}
               <thead className="bg-red-600 text-white">
                 <tr>
                   <th>#</th>
                   <th>Image</th>
                   <th>Name</th>
+                  <th>Request</th>
                   <th>Quantity</th>
                   <th>Total</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
-              {
-                data?.cart?.length > 0 ? (<tbody>
-                  {
-                    data?.cart?.map((item, index) => <tr key={index} className="hover:bg-slate-100">
-                    <td>{++index}</td>
-                    <td><img className="h-6 w-6" src={item.image}></img></td>
-                    <td><p>{item?.name}</p></td>
-                    <td>{item?.quantity}</td>
-                    <td>{item?.total}</td>
-                  </tr>)
-                  }
-                </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)
-              }
-              
+              {data?.length > 0 ? (
+                <tbody>
+                  {data?.map((item, index) => (
+                    <tr key={index} className="hover:bg-slate-100">
+                      <td>{++index}</td>
+                      <td>
+                        <img className="h-6 w-6" src={item.image}></img>
+                      </td>
+                      <td>
+                        <p>{item?.productName}</p>
+                      </td>
+                      <td>
+                        {
+                            item?.product === 'pending' ? <span className="bg-red-500 text-white p-1 rounded-md text-[9px]">pending</span> : <span className="bg-green-500 text-white p-1 rounded-md text-[9px]">approved</span>
+                          }
+                      </td>
+                      <td>{item?.quantity}</td>
+                      <td>{item?.total}</td>
+                      <td>
+                        <button
+                          onClick={() => deleteItem(item?._id)}
+                          className="text-[10px] btn btn-xs bg-red-600 hover:bg-red-600 text-white"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              ) : (
+                <p className="text-center mx-auto w-full">No data available</p>
+              )}
             </table>
           </div>
           {/* table end */}

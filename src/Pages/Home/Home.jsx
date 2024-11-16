@@ -37,7 +37,7 @@ const Home = () => {
       image: item.image,
       productName: item.productName,
       quantity: parseInt(quantity),
-      product: "reject",
+      product: "pending",
       total: parseInt(quantity) * item.price || item.price
     }
     // checking data
