@@ -39,8 +39,6 @@ const Header = () => {
     })
   })
 
-
-
   return (
     <>
       {/* content section start */}
