@@ -44,7 +44,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
   };
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col h-full">
       {/* content section start */}
       {/* table start */}
       <div className="h-1/2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white">

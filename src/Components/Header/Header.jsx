@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import { IoClose } from "react-icons/io5";
 
 
 const Header = () => {
+
+  const [toggle, setToggle] = useState(false)
+
+
   return (
     <>
       {/* content section start */}
@@ -11,10 +18,9 @@ const Header = () => {
           <h2 className="text-lg xl:text-xl text-white font-bold italic">Retail-pos</h2>
         </div>
         <div className="flex justify-center items-center gap-2">
-        <GiHamburgerMenu className="text-lg xl:text-2xl"></GiHamburgerMenu>
-        {/* {
-            active ? <IoClose onClick={() => toggleSideBar(!active)} className=" text-green-500 text-xl xl:text-2xl 2xl:text-3xl"></IoClose> : <GiHamburgerMenu onClick={() => toggleSideBar(!active)} className=" text-green-500 text-xl xl:text-2xl"></GiHamburgerMenu>
-          } */}
+        {
+            toggle ? <IoClose onClick={() => setToggle(!toggle)} className=" text-black text-xl sm:hidden"></IoClose> : <GiHamburgerMenu onClick={() => setToggle(!toggle)} className=" text-black text-base sm:hidden"></GiHamburgerMenu>
+        }
         <Link to="/user-profile">
         <div className="w-7 lg:w-9 rounded-full">
           <img className="rounded-full"
@@ -24,6 +30,50 @@ const Header = () => {
         </div>
       </div>
       {/* content section end */}
+            {/* mobile content section start */}
+            <div className={`${toggle ? 'top-14  bottom-0 right-0 left-0' : 'top-12 -left-96 right-[1000px] bottom-0' } fixed transform duration-500 easy-in bg-black z-50 bg-opacity-95`}>
+              <ul className="flex flex-col justify-center items-center h-full w-full gap-3">
+                <li onClick={() => setToggle(!toggle)}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-sm font-bold text-green-500"
+                        : "text-sm text-white"
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li onClick={() => setToggle(!toggle)}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-sm font-bold text-green-500"
+                        : "text-sm text-white"
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li onClick={() => setToggle(!toggle)}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-sm font-bold text-green-500"
+                        : "text-sm text-white"
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+
+              </ul>
+            </div>
+          {/* link section end */}
+      {/* mobile content section end */}
     </>
   );
 };

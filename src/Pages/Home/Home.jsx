@@ -75,7 +75,7 @@ const Home = () => {
       {/* title end */}
       <div className="flex justify-between h-screen sm:gap-2 md:gap-1 lg:gap-2 xl:gap-3">
         {/* cart-item start */}
-        <div className="w-full sm:w-[65%] grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-2 2xl:gap-3 px-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-white">
+        <div className="w-full md:w-[60%] lg:w-[65%] grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-2 2xl:gap-3 px-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-white">
           {
             allProducts.map((item, index) => <Cart key={index}
             item={item}
@@ -86,7 +86,7 @@ const Home = () => {
         </div>
         {/* cart-item end */}
         {/* quantity start */}
-        <div className="sm:w-[35%] hidden sm:block px-5">
+        <div className="md:w-[40%] lg:w-[35%] hidden md:block px-5">
           <OrderData deleteFun={deleteFun}
           totalItem={totalItem}
           setTotalItem={setTotalItem}
