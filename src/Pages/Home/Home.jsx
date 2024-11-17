@@ -75,7 +75,7 @@ const Home = () => {
       {/* title end */}
       <div className="flex justify-between h-full sm:gap-2 md:gap-1 lg:gap-2 xl:gap-3">
         {/* cart-item start */}
-        <div className="w-full h-full sm:h-[430px] md:h-[430px] lg:h-[600px] xl:h-[520px] md:w-[60%] lg:w-[65%] grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-2 2xl:gap-3 px-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-white">
+        <div className="w-full h-full sm:h-[430px] md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] md:w-[60%] lg:w-[65%] grid grid-cols-3 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-2 2xl:gap-3 px-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-white">
           {
             allProducts.map((item, index) => <Cart key={index}
             item={item}
@@ -86,7 +86,7 @@ const Home = () => {
         </div>
         {/* cart-item end */}
         {/* quantity start */}
-        <div className="md:w-[40%] md:h-[430px] lg:h-[600px] xl:h-[520px] lg:w-[35%] hidden md:block px-5">
+        <div className="md:w-[40%] md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] lg:w-[35%] hidden md:block px-5">
           <OrderData deleteFun={deleteFun}
           totalItem={totalItem}
           setTotalItem={setTotalItem}
