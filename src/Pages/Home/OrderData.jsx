@@ -97,7 +97,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
       </div>
       {/* table end */}
       {/* form start */}
-      <div className="p-5 rounded-2xl bg-base-100 w-full shrink-0 shadow-2xl mb-3">
+      <div className="p-4 rounded-2xl bg-base-100 w-full shrink-0 shadow-2xl mb-3 mt-3">
         <form onSubmit={setDataFun}>
           <div className="form-control">
             <label className="label">
@@ -107,7 +107,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
               name="name"
               type="text"
               placeholder="email"
-              className="input input-bordered"
+              className="input input-bordered input-sm"
               required
             />
           </div>
@@ -119,11 +119,11 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
               name="email"
               type="email"
               placeholder="password"
-              className="input input-bordered"
+              className="input input-bordered input-sm"
               required
             />
           </div>
-          <div className="form-control mt-6">
+          <div className="form-control mt-3">
             <button className="btn bg-green-500 text-white hover:bg-green-500">
               Submit
             </button>

@@ -44,7 +44,7 @@ const Header = () => {
   return (
     <>
       {/* content section start */}
-      <div className={`${active ? 'fixed top-0 right-0 left-0 z-50 shadow-md': 'sticky '}`}>
+      <div className={`${active ? 'fixed top-0 right-0 left-0 z-50 sm:sticky': 'sticky '}`}>
       <div className="w-full h-14 bg-green-500 mb-1 flex justify-between items-center px-3 xl:px-5">
         <div>
           <h2 className="text-lg xl:text-xl text-white font-bold italic">Retail-pos</h2>
