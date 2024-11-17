@@ -61,7 +61,7 @@ const UserOrderTable = () => {
       <Title name={"User-Order-Table"}></Title>
       {/* title end */}
       {/* content start */}
-      <div className="my-8 xl:my-10">
+      <div className="mt-2 sm:mt-2 md:mt-2 lg:mt-3 xl:mt-3 2xl:mt-4">
         {/* content section start */}
         <div className="container mx-auto px-5 lg:px-8 xl:px-10 ">
           {/* table title start */}
@@ -72,7 +72,7 @@ const UserOrderTable = () => {
           </div>
           {/* table title end */}
           {/* table start */}
-          <div className="overflow-x-auto mt-5 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white h-[400px]">
+          <div className="overflow-x-auto mt-3 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white h-[350px] sm:h-[350px] md:h-[360px] lg:h-[380px] xl:h-[390px] 2xl:h-[400px]">
             <table className="table">
               {/* head */}
               <thead className="bg-red-600 text-white">
