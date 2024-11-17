@@ -10,6 +10,7 @@ import AllUsers from "../Pages/AllUsers/AllUsers";
 import CreateUsers from "../Pages/CreateUsers/CreateUsers";
 import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../Pages/UserProfile/UserProfile";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -22,16 +23,15 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader : () => fetch('products.json')
       },
       {
         path: '/user-order-table',
-        element: <UserOrderTable></UserOrderTable>,
+        element: <AdminRoute><UserOrderTable></UserOrderTable></AdminRoute>,
         loader : () => fetch('http://localhost:5000/allOrders')
       },
       {
         path: '/all-users',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: '/order-table',
@@ -39,11 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/create-product',
-        element: <CreateProduct></CreateProduct>
+        element: <AdminRoute><CreateProduct></CreateProduct></AdminRoute>
       },
       {
         path: '/create-users',
-        element: <CreateUsers></CreateUsers>
+        element: <AdminRoute><CreateUsers></CreateUsers></AdminRoute>
       },
       {
         path: '/user-profile',

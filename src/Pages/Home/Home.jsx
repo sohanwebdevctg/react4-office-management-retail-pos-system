@@ -1,21 +1,26 @@
-import { useContext, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Title from "../../Components/Title/Title";
 import Cart from "./Cart";
 import OrderData from "./OrderData";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
+import { getUser } from "../../utilities/localstorage";
 
 
 const Home = () => {
 
-  // allProducts data
-  const loaderData = useLoaderData();
-
-  const {validUser} = useContext(AuthContext);
+  // get user data
+  const [validUser, setValidUser] = useState(() => getUser());
 
   // loading data
-  const [allProducts, setAllProducts] = useState(loaderData)
+  const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('products.json')
+    .then((res) => res.json())
+    .then((data) => {
+      setAllProducts(data)
+    })
+  },[])
 
   // get quantity data
   const count = useRef(1)
