@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from './../Components/Navbar/Navbar';
 import { useState } from "react";
+import Header from "../Components/Header/Header";
 
 
 const MainLayout = () => {
@@ -23,6 +24,7 @@ const MainLayout = () => {
       {/* navbar section end */}
       {/* content section start */}
       <div className={`${active ? 'md:w-[89%] lg:w-[90%] xl:w-[91%] 2xl:w-[92%]' : 'md:w-[94%] lg:w-[95%]' } h-screen bg-white duration-500 w-full`}>
+        <Header></Header>
         <Outlet></Outlet>
       </div>
       {/* content section end */}
