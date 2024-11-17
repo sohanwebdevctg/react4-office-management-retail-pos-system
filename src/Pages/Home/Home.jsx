@@ -90,8 +90,8 @@ const Home = () => {
         </div>
         {/* cart-item end */}
         {/* quantity start */}
-        <div className="md:w-[40%]">
-          <div className={`${toggle ? 'fixed top-14 left-0 sm:left-20 right-0 bottom-0': 'fixed top-14 left-[1000px] right-0 bottom-0'} md:sticky  h-full md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] lg:w-[35%]  py-5 md:py-0 px-5 bg-white z-30 transform duration-500 easy-in`}>
+        <div className="md:w-[40%] lg:w-[35%]">
+          <div className={`${toggle ? 'fixed top-14 left-0 sm:left-20 right-0 bottom-0': 'fixed top-14 left-[1000px] right-0 bottom-0'} md:sticky  h-full md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] w-full  py-5 md:py-0 px-5 bg-white z-30 transform duration-500 easy-in`}>
             <OrderData deleteFun={deleteFun}
             totalItem={totalItem}
             setTotalItem={setTotalItem}
