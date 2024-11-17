@@ -4,12 +4,16 @@ import Cart from "./Cart";
 import OrderData from "./OrderData";
 import Swal from "sweetalert2";
 import { getUser } from "../../utilities/localstorage";
+import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 
 const Home = () => {
 
   // get user data
   const [validUser, setValidUser] = useState(() => getUser());
+
+  // toggle data
+  const [toggle, setToggle] = useState(false)
 
   // loading data
   const [allProducts, setAllProducts] = useState([]);
@@ -86,11 +90,20 @@ const Home = () => {
         </div>
         {/* cart-item end */}
         {/* quantity start */}
-        <div className="md:w-[40%] md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] lg:w-[35%] hidden md:block px-5">
-          <OrderData deleteFun={deleteFun}
-          totalItem={totalItem}
-          setTotalItem={setTotalItem}
-          ></OrderData>
+        <div className="md:w-[40%]">
+          <div className={`${toggle ? 'fixed top-14 left-0 sm:left-20 right-0 bottom-0': 'fixed top-14 left-[1000px] right-0 bottom-0'} md:sticky  h-full md:h-[430px] lg:h-[600px] xl:h-[520px] 2xl:h-[600px] lg:w-[35%]  py-5 md:py-0 px-5 bg-white z-30 transform duration-500 easy-in`}>
+            <OrderData deleteFun={deleteFun}
+            totalItem={totalItem}
+            setTotalItem={setTotalItem}
+            toggle={toggle}
+            setToggle={setToggle}
+            ></OrderData>
+          </div>
+          <span className="fixed top-[50%] -right-2 z-40 md:hidden">
+            {
+              toggle ? <BiSolidRightArrow onClick={() => setToggle(!toggle)} className="text-3xl bg-white shadow-md shadow-slate-300 rounded-full p-1 text-green-400"></BiSolidRightArrow> : <BiSolidLeftArrow onClick={() => setToggle(!toggle)} className="text-3xl bg-white shadow-md shadow-slate-300 rounded-full p-1 text-green-400"></BiSolidLeftArrow>
+            }
+          </span>
         </div>
         {/* quantity end */}
       </div>

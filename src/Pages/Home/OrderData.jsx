@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Components/AuthProvider/AuthProvider";
 
-const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
+const OrderData = ({ totalItem, deleteFun, setTotalItem,toggle, setToggle}) => {
   const { validUser } = useContext(AuthContext);
 
   const setDataFun = (event) => {
@@ -29,6 +29,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
             });
             setTotalItem([]);
             location.reload();
+            setToggle(!toggle)
           }
         });
     } else {
@@ -47,7 +48,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
     <div className="flex flex-col h-full">
       {/* content section start */}
       {/* table start */}
-      <div className="h-1/2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white">
+      <div className="h-48 sm:h-52 md:h-1/2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white">
         <table className="table w-full">
           {/* head */}
           <thead className="bg-green-500 text-white w-full">
@@ -97,7 +98,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
       </div>
       {/* table end */}
       {/* form start */}
-      <div className="p-4 rounded-2xl bg-base-100 w-full shrink-0 shadow-2xl mb-3 mt-3">
+      <div className="p-4 rounded-2xl bg-base-100 w-full shrink-0 shadow-2xl mb-3 mt-5 md:mt-3">
         <form onSubmit={setDataFun}>
           <div className="form-control">
             <label className="label">
@@ -124,7 +125,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem}) => {
             />
           </div>
           <div className="form-control mt-3">
-            <button className="btn bg-green-500 text-white hover:bg-green-500">
+            <button className="py-1 rounded-lg bg-green-500 text-white hover:bg-green-500">
               Submit
             </button>
           </div>
