@@ -30,7 +30,7 @@ const Login = () => {
       });
     } else {
       // checking user data
-      fetch('http://localhost:5000/checkUsers',{
+      fetch('https://backend-eosin-one.vercel.app/checkUsers',{
         method: 'POST',
         headers : {'content-type' : 'application/json'},
         body : JSON.stringify(data)

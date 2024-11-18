@@ -5,7 +5,7 @@ const Title = ({name}) => {
   return (
     <div>
       <Helmet>
-        <title> urniter | {name}</title>
+        <title> POS | {name}</title>
       </Helmet>
     </div>
   );

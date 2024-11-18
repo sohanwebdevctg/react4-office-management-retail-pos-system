@@ -17,7 +17,7 @@ const CreateUsers = () => {
 
     const userInfo = {name,email, status, userType, password}
 
-    fetch('http://localhost:5000/users',{
+    fetch('https://backend-eosin-one.vercel.app/users',{
       method : 'POST',
       headers: { 'content-type' : 'application/json'},
       body : JSON.stringify(userInfo)
@@ -35,15 +35,6 @@ const CreateUsers = () => {
       form.reset();
       }
     })
-
-    // form.reset();
-    // Swal.fire({
-    //   position: "middle",
-    //   icon: "success",
-    //   title: "Your data has been saved",
-    //   showConfirmButton: false,
-    //   timer: 1000
-    // });
   }
 
   return (

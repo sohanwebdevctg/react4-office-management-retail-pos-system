@@ -10,7 +10,7 @@ const UserOrderTable = () => {
 
   // delete Item
   const deleteItem = (_id) => {
-    fetch(`http://localhost:5000/allOrders/${_id}`, {
+    fetch(`https://backend-eosin-one.vercel.app/allOrders/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -35,7 +35,7 @@ const UserOrderTable = () => {
 
     const product = {product : "approved"};
 
-    fetch(`http://localhost:5000/allOrders/${_id}`,{
+    fetch(`https://backend-eosin-one.vercel.app/allOrders/${_id}`,{
       method : 'PUT',
       headers : { 'content-type' : 'application/json'},
       body : JSON.stringify(product)

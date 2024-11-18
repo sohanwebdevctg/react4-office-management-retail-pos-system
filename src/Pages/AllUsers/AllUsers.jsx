@@ -10,7 +10,7 @@ const AllUsers = () => {
 
   // allUsers
   useEffect(() => {
-    fetch('http://localhost:5000/allUsers')
+    fetch('https://backend-eosin-one.vercel.app/allUsers')
     .then((res) => res.json())
     .then((data) => setAllUsers(data))
   },[]);
@@ -18,7 +18,7 @@ const AllUsers = () => {
 
   // delete single user
   const deleteSingleUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`,{
+    fetch(`https://backend-eosin-one.vercel.app/users/${id}`,{
       method: 'DELETE'
     })
     .then((res) => res.json())

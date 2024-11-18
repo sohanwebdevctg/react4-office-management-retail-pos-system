@@ -14,7 +14,7 @@ const OrderTable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userOrder/${validUser?.email}`)
+    fetch(`https://backend-eosin-one.vercel.app/userOrder/${validUser?.email}`)
     .then((res) => res.json())
     .then((data) => {
       setData(data)
@@ -25,7 +25,7 @@ const OrderTable = () => {
 
   // delete Item
   const deleteItem = (_id) => {
-    fetch(`http://localhost:5000/allOrders/${_id}`, {
+    fetch(`https://backend-eosin-one.vercel.app/allOrders/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

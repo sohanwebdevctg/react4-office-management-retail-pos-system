@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: '/user-order-table',
         element: <AdminRoute><UserOrderTable></UserOrderTable></AdminRoute>,
-        loader : () => fetch('http://localhost:5000/allOrders')
+        loader : () => fetch('https://backend-eosin-one.vercel.app/allOrders')
       },
       {
         path: '/all-users',

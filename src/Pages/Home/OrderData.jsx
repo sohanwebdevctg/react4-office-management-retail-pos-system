@@ -12,7 +12,7 @@ const OrderData = ({ totalItem, deleteFun, setTotalItem,toggle, setToggle}) => {
     const email = form.email.value;
 
     if (validUser.name === name && validUser.email === email) {
-      fetch("http://localhost:5000/orders", {
+      fetch("https://backend-eosin-one.vercel.app/orders", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(totalItem),
