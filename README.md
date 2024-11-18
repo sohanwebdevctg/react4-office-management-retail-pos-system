@@ -4,5 +4,5 @@
 
 * ### name: admin, email : admin@gmail.com, password : 123456
 
-* ### live link: ()
-* ### code link: ()
+* ### live link: (https://creative-axolotl-782f50.netlify.app/login)
+* ### code link: (https://github.com/sohanwebdevctg/react4-office-management-retail-pos-system)
