@@ -74,7 +74,9 @@ const AllUsers = () => {
                     <td>{item?.email}</td>
                     <td>{item?.status}</td>
                     <td>{item?.userType}</td>
-                    <td><button onClick={() => deleteSingleUser(item?._id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button></td>
+                    <td>{
+                      item?.name === "admin" && item?.email === "admin@gmail.com" && item?.userType === "admin" ? <button className="bg-red-500 p-1 rounded-md text-white text-xs disable opacity-50">Delete</button> : <button onClick={() => deleteSingleUser(item?._id)} className="bg-red-500 p-1 rounded-md text-white text-xs">Delete</button>
+                      }</td>
                   </tr>)
                   }
                 </tbody>) : (<p className="text-center mx-auto w-full">No data available</p>)
